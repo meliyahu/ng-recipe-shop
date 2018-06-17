@@ -1,3 +1,4 @@
+import { RecipeService } from './../../services/recipe.service';
 import { Recipe } from './../recipe.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,15 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
- recipes: Recipe[] = [
-   // tslint:disable-next-line:max-line-length
-   new Recipe('Roasted Ribs', 'Roasted ribs with sweet chilly and a salad side dish', 'https://www.maxpixel.net/static/photo/1x/Meat-Power-Recipe-Food-Dishes-Pork-1459693.jpg'),
-   new Recipe('Kabobs', 'Shish kabobs over an open flame', 'https://www.nps.gov/subjects/camping/images/recipe_1.jpg')
- ];
+ recipes: Recipe[];
 
-   constructor() { }
+   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.recipes = this.recipeService.getRecipes();
   }
 
 }
